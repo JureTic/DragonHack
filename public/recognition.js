@@ -11,35 +11,26 @@ function speechToEmotion() {
     //searching
     setEmoji('searching')
 
-    fetch(`/emotion?text=${transcript}`)
+    fetch(`/cocktail?text=${transcript}`)
       .then((response) => response.json())
-      .then((result) => {
-        if (result.score > 0) {
-          //positive
-          setEmoji('mohito')
-        } else if (result.score < 0) {
-          //negative
-          setEmoji('bm')
-        } else {
-          //neutral
-          setEmoji('glass')
-        }
+      .then((cocktail) => {
+        
       })
       .catch((e) => {
         console.error('Request error -> ', e)
         recognition.abort()
       })
   }
-//error
+  //error
   recognition.onerror = function(event) {
     console.error('Recognition error -> ', event.error)
     setEmoji('glass')
   }
-//listening
+  //listening
   recognition.onaudiostart = function() {
     setEmoji('glass')
   }
-//idle
+  //idle
   recognition.onend = function() {
     setEmoji('glass')
   }
