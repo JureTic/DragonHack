@@ -26,12 +26,7 @@ jobs:
       - run: ls
       - run: FILE="new.txt"
       - run: python3 feelings.py > new.txt
-      - run: |
-        if  grep -q "YEAH" new.txt ; then 
-          echo 'The all purrfect.' ; 
-        else 
-          exit 1 ; 
-          fi
+      - run: if grep -q "YEAH" new.txt ; then echo 'The all purrfect.' ; else exit 1 ;  fi
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
