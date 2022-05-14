@@ -11,6 +11,7 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.17.1",
+    "expressjs": "^1.0.1",
     "sentiment": "^5.0.2"
   },
   "devDependencies": {
