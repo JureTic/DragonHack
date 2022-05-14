@@ -21,6 +21,8 @@ workflows:
     jobs:
       - build-and-test-python
       - node/test
+        requires:
+          - build-and-test-python
       - heroku/deploy-via-git: # we push to heroku
           force: true # this parameter instructs the push to use a force flag when pushing to the heroku remote, see: https://devcenter.heroku.com/articles/git
           requires:
@@ -42,6 +44,6 @@ jobs:
       - run: FILE="new.txt"
       - run: python3 feelings.py > new.txt
       - run: if grep -q "YEAH" new.txt ; then echo 'The all purrfect.' ; else exit 1 ;  fi
-    filters:
-      branches:
-        only: master
+    # filters:
+    #   branches:
+    #     only: master
