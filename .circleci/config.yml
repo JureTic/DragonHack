@@ -18,10 +18,11 @@ jobs:
     docker:
       - image: python:3.6.15
     steps:
-      # - checkout
-      - python/install-packages:
-          pkg-manager: pip
-          # app-dir: ~/project/package-directory/  # If you're requirements.txt isn't in the root directory.
+      - checkout
+      - run: pip install -r requirements.txt 
+      # - python/install-packages:
+      #     pkg-manager: pip
+      #     # app-dir: ~/project/package-directory/  # If you're requirements.txt isn't in the root directory.
           # pip-dependency-file: test-requirements.txt  # if you have a different name for your requirements file, maybe one that combines your runtime and test requirements.
       - run: ls
       - run: FILE="new.txt"
