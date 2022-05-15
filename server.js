@@ -25,7 +25,12 @@ app.get('/recept', function(req, res) {
 })
 
 function get_cocktail(score) {
-  var cocktail = null
+  var cocktail = null;
+
+  if (score == 0) {
+    return cocktails.neutral[rand(0, cocktails.neutral.length)];
+  }
+
   let prob = rand(0, Math.abs(score) * 2);
   if (prob < 1) {
     cocktail = cocktails.neutral[rand(0, cocktails.neutral.length)];
@@ -82,11 +87,11 @@ app.get('/cocktail', function(req, res) {
 
     let cocktail = get_cocktail(score.score);
 
-    if (choices.findIndex(function (element){
-      return element.idDrink === cocktail.idDrink;
-    }) === -1) {
-      choices.push(cocktail);
-    }
+    // if (choices.findIndex(function (element){
+    //   return element.idDrink === cocktail.idDrink;
+    // }) === -1) {
+    choices.push(cocktail);
+    // }
   }
 
   res.send({
