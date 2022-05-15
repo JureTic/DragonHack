@@ -24,11 +24,7 @@ app.get('/recept', function(req, res) {
   res.sendFile(path.join(__dirname, 'recept.html'))
 })
 
-app.get('/cocktail', function(req, res) {
-  const sentiment = new Sentiment()
-  const text = req.query.text
-  const score = sentiment.analyze(text)
-
+function get_cocktail(score) {
   var cocktail = null
   let prob = rand(0, score * 2);
   if (prob < 1) {
@@ -64,7 +60,30 @@ app.get('/cocktail', function(req, res) {
   if (cocktail == null) {
     cocktail = cocktails.neutral[rand(0, cocktails.neutral.length)];
   }
-  res.send(cocktail)
+}
+
+function get_emotion(score) {
+  // temporary
+  return "Angry";
+}
+
+app.get('/cocktail', function(req, res) {
+  const sentiment = new Sentiment()
+  const text = req.query.text
+  const score = sentiment.analyze(text)
+
+  let choices = [];
+  while (choices.length < 3) {
+    let cocktail = get_cocktail(score);
+    if (choices.find_index(cocktail) != -1) {
+      choices.push(cocktail);
+    }
+  }
+
+  res.send({
+    emotion: get_emotion(score),
+    cocktails: choices 
+  });
 })
 
 app.listen(port, function() {
