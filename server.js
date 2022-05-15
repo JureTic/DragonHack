@@ -2,7 +2,10 @@ const express = require('express')
 const path = require('path')
 const Sentiment = require('sentiment')
 
-const port = 3000
+let port = process.env.PORT
+if (!port) {
+  port = 3000
+}
 const app = express()
 
 const cocktails = require('./cocktails.js')
