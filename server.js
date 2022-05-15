@@ -60,6 +60,8 @@ function get_cocktail(score) {
   if (cocktail == null) {
     cocktail = cocktails.neutral[rand(0, cocktails.neutral.length)];
   }
+
+  return cocktail;
 }
 
 function get_emotion(score) {
@@ -71,11 +73,15 @@ app.get('/cocktail', function(req, res) {
   const sentiment = new Sentiment()
   const text = req.query.text
   const score = sentiment.analyze(text)
-
   let choices = [];
   while (choices.length < 3) {
+    console.log(score)
+
     let cocktail = get_cocktail(score);
-    if (choices.find_index(cocktail) != -1) {
+
+    if (choices.findIndex(function (element){
+      return element.idDrink === cocktail.idDrink;
+    }) === -1) {
       choices.push(cocktail);
     }
   }
