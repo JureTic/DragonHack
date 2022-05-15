@@ -25,9 +25,7 @@ jobs:
       - run: FILE="new.txt"
       - run: python3 feelings.py > new.txt
       - run: if grep -q "YEAH" new.txt ; then echo 'The all purrfect.' ; else exit 1 ;  fi
-    filters:
-      branches:
-        only: master
+
   
 
 
