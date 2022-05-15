@@ -26,7 +26,6 @@ $(document).ready(function () {
         .then((result) => {
           recognition.stop();
           $("#emotionText").text(result.emotion)
-          // TODO: set emotion text field
           // TODO: set up cocktail descriptions
         })
         .catch((e) => {
