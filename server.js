@@ -46,14 +46,14 @@ function get_cocktail(score) {
     else if (score < -3) {
       let prob = rand(0, score);
       if (prob < 1) {
-        cocktail = cocktails.good[rand(0, cocktails.good.length)];
+        cocktail = cocktails.bad[rand(0, cocktails.bad.length)];
       }
       else {
-        cocktail = cocktails.good[rand(0, cocktails.angry.length)];
+        cocktail = cocktails.angry[rand(0, cocktails.angry.length)];
       }
     }
     else {
-      cocktail = cocktails.good[rand(0, cocktails.bad.length)];
+      cocktail = cocktails.bad[rand(0, cocktails.bad.length)];
     }
   }
 
@@ -65,11 +65,11 @@ function get_cocktail(score) {
 }
 
 function get_emotion(score) {
-  if(score<-3) return "Angry";
-  else if (score<0) return "Sad";
-  else if (score==0) return "Neutral";
-  else if (score<3) return "Good";
-  else return "Happy"
+  if (score < -3) return "Angry";
+  else if (score < 0) return "Sad";
+  else if (score == 0) return "Neutral";
+  else if (score < 3) return "Good";
+  else return "Happy";
 }
 
 app.get('/cocktail', function(req, res) {
@@ -80,7 +80,7 @@ app.get('/cocktail', function(req, res) {
   while (choices.length < 3) {
     console.log(score)
 
-    let cocktail = get_cocktail(score);
+    let cocktail = get_cocktail(score.score);
 
     if (choices.findIndex(function (element){
       return element.idDrink === cocktail.idDrink;
@@ -90,7 +90,7 @@ app.get('/cocktail', function(req, res) {
   }
 
   res.send({
-    emotion: get_emotion(score),
+    emotion: get_emotion(score.score),
     cocktails: choices 
   });
 })
