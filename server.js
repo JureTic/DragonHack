@@ -31,7 +31,7 @@ function get_cocktail(score) {
     return cocktails.neutral[rand(0, cocktails.neutral.length)];
   }
 
-  let prob = rand(0, Math.abs(score) * 2);
+  let prob = rand(0, Math.abs(score) * 5);
   if (prob < 1) {
     cocktail = cocktails.neutral[rand(0, cocktails.neutral.length)];
   }
