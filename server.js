@@ -17,6 +17,10 @@ app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, 'index.html'))
 })
 
+app.get('/recept', function(req, res) {
+  res.sendFile(path.join(__dirname, 'recept.html'))
+})
+
 app.get('/cocktail', function(req, res) {
   const sentiment = new Sentiment()
   const text = req.query.text
