@@ -28,6 +28,7 @@ $(document).ready(function () {
           $("#emotionText").text(result.emotion)
           // TODO: set emotion text field
           document.getElementById("recordingscreen").setAttribute("hidden","hidden");
+
           // TODO: set up cocktail descriptions
           document.getElementById("mainContent1").removeAttribute("hidden");
 
