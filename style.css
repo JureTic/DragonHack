@@ -1,4 +1,4 @@
-body{
-    font-family: "Comic Sans MS";
-
+p, ul, button{
+    font-family: Gabriola;
+    font-weight: bold;
 }
